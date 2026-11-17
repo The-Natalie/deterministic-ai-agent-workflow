@@ -3,6 +3,10 @@
 **By Rasmus Widing**
 _Product Builder | AI Adoption Specialist | Creator of the PRP Framework_
 
+> **Reference material - not mandatory.** Vertical Slice Architecture is one option among
+> several; this workflow does not require it. Example stack: Python + FastAPI + SQLAlchemy.
+> Take the decision rules; don't copy the folder names or tooling unless your project matches.
+
 Enough theory. You know WHY to use VSA ([Article 2](link-to-article-2)). You know WHAT tooling you need ([Article 1](link-to-article-1)). Now let's BUILD.
 
 After three years building AI-powered applications and working with engineering teams adopting vertical slice architecture, I've learned that **the hardest part isn't understanding the theory—it's knowing where to put things**.

@@ -3,6 +3,11 @@
 **By Rasmus Widing**
 _Product Builder | AI Adoption Specialist | Creator of the PRP Framework_
 
+> **Reference article - not a requirement of this workflow.** Third-party guidance,
+> reproduced here for context. The pattern rankings below are the author's opinion, not a
+> rule of this system; no architecture is mandatory here. Code examples are Python/FastAPI,
+> but the trade-offs discussed apply to any stack.
+
 In [Part 1](link-to-article-1), I showed you how to set up tooling. Now let's talk about something more controversial: why your architecture might be working against you.
 
 After three years of building software with AI coding tools and working with engineering teams on AI adoption, I've discovered something counterintuitive: **The architecture pattern you choose has more impact on AI productivity than the prompts you write**.

@@ -1,0 +1,4 @@
+{
+  "description": "Public default for /new-project. Do not put your real path here. Put it in config.local.json (same folder, gitignored); /new-project reads that file first.",
+  "starter_path": "<path-to-your-starter>"
+}

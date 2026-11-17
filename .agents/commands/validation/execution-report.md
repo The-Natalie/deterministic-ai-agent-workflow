@@ -69,4 +69,4 @@ Based on this implementation, what should change for next time?
 
 - Plan command improvements: [suggestions]
 - Execute command improvements: [suggestions]
-- CLAUDE.md additions: [suggestions]
+- AGENTS.md additions: [suggestions]

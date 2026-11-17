@@ -1,10 +1,10 @@
 # Prime for Tool Development
 
-Load tool development patterns from Module 3 to prepare for building agent tools.
+Load the tool development patterns from this repo's reference docs to prepare for building agent tools.
 
 ## Context
 
-You are about to work on building or modifying agent tools that will be used by Pydantic AI agents. Load the comprehensive patterns and best practices we established in Module 3 for writing agent-optimized tool docstrings.
+You are about to work on building or modifying tools that an LLM agent will call. Load the patterns and best practices for writing agent-optimized tool docstrings. (The reference examples use Pydantic AI; the structure applies to any agent framework.)
 
 ## Read
 

@@ -1,7 +1,10 @@
 ---
 description: Implement fix from RCA document for GitHub issue
 argument-hint: [github-issue-id]
-allowed-tools: Read, Write, Edit, Bash(ruff:*), Bash(mypy:*), Bash(pytest:*), Bash(npm:*), Bash(bun:*)
+# allowed-tools: optional. If you add it, scope it to this project's own
+#   test/lint/typecheck/package commands, e.g.
+#   Read, Write, Edit, Bash(pytest:*), Bash(ruff:*), Bash(npm:*)
+#   Leaving it unset lets the RCA's validation commands run on any stack.
 ---
 
 # Implement Fix: GitHub Issue #$ARGUMENTS
@@ -76,7 +79,7 @@ Following the "Testing Requirements" from RCA:
 - Mirror the source file location
 - Use descriptive test names
 
-**Test implementation:**
+**Test implementation** (example - Python/pytest; use the project's own test framework and naming):
 ```python
 def test_issue_$ARGUMENTS_fix():
     """Test that issue #$ARGUMENTS is fixed."""

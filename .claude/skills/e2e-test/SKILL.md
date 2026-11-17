@@ -62,7 +62,7 @@ If installation fails, stop with:
 
 ## Phase 1: Parallel Research
 
-Launch **three sub-agents simultaneously** using the Task tool. All three run in parallel.
+Launch the applicable sub-agents below simultaneously using the Task tool. They run in parallel.
 
 ### Sub-agent 1: Application Structure & User Journeys
 
@@ -77,6 +77,8 @@ Launch **three sub-agents simultaneously** using the Task tool. All three run in
 > Be exhaustive. Testing will only cover what you identify here.
 
 ### Sub-agent 2: Database Schema & Data Flows
+
+**Skip this sub-agent if the application has no datastore.**
 
 > Research this codebase's database layer. Read `.env.example` to understand environment variables for database connections. DO NOT read `.env` directly. Return a structured summary covering:
 >
@@ -96,7 +98,7 @@ Launch **three sub-agents simultaneously** using the Task tool. All three run in
 >
 > Return a prioritized list with file paths and line numbers.
 
-**Wait for all three sub-agents to complete before proceeding.**
+**Wait for all launched sub-agents to complete before proceeding.**
 
 ## Phase 2: Start the Application
 
@@ -159,11 +161,13 @@ Be thorough. Go through EVERY interaction, EVERY form field, EVERY button. The g
 
 ### 4b. Database Validation
 
+**Skip this phase entirely if the application has no datastore.**
+
 After any interaction that should modify data (form submits, deletions, updates):
 
 1. Query the database to verify records. Use the environment variable from Sub-agent 2's research for the connection string and the schema docs to know what to check.
-   - **Postgres:** use `psql` directly — e.g., `psql "$DATABASE_URL" -c "SELECT theme FROM profiles WHERE username = 'testuser'"`
-   - **SQLite:** use `sqlite3` directly — e.g., `sqlite3 db.sqlite "SELECT theme FROM profiles WHERE username = 'testuser'"`
+   - **Postgres:** use `psql` directly — e.g., `psql "$DATABASE_URL" -c "SELECT <columns> FROM <table> WHERE <key> = '<test value>'"`
+   - **SQLite:** use `sqlite3` directly — e.g., `sqlite3 <db-file> "SELECT <columns> FROM <table> WHERE <key> = '<test value>'"`
    - **Other databases:** write a small ad hoc script in the application's language, run it, then delete it
 2. Verify:
    - Records created/updated/deleted as expected

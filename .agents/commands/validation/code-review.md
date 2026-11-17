@@ -19,10 +19,10 @@ Start by gathering codebase context to understand the codebase standards and pat
 
 Start by examining:
 
-- CLAUDE.md
+- AGENTS.md
 - README.md
-- Key files in the /core module
-- Documented standards in the /docs directory
+- Key files in the project's core or shared modules, if it has them
+- Any standards docs the project has (AGENTS.md, `docs/`, `.agents/reference/`)
 
 After you have a good understanding
 
@@ -69,7 +69,7 @@ For each changed file or new file, analyze for:
    - Missing type hints/annotations
 
 5. **Adherence to Codebase Standards and Existing Patterns**
-   - Adherence to standards documented in the /docs directory
+   - Adherence to standards documented in AGENTS.md and any project standards docs
    - Linting, typing, and formatting standards
    - Logging standards
    - Testing standards

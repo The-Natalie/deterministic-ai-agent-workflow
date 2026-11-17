@@ -3,6 +3,10 @@
 **By Rasmus Widing**
 _Product Builder | AI Adoption Specialist | Creator of the PRP Framework_
 
+> **Reference article - not a requirement of this workflow.** Third-party guidance,
+> reproduced here for context. Example stack: Python + uv + Ruff + MyPy/Pyright. Take the decision rules;
+> don't copy the folder names, tooling, or layout unless your project matches.
+
 After three years of building software with AI coding tools—having transitioned from product management—and helping hundreds of engineers adopt agentic workflows, I've learned that **success with AI-assisted development isn't about the prompts you write—it's about the infrastructure you build**.
 
 This article distills the timeless principles I've discovered for creating codebases that amplify AI productivity rather than fight against it. Whether you're using Cursor, Claude Code, or any other AI coding assistant, these patterns will make your AI agent more reliable, predictable, and effective.

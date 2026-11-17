@@ -15,7 +15,7 @@ Perform a meta-level analysis of how well the implementation followed the plan a
 - Analyze plan adherence and divergence patterns
 - Identify which divergences were justified vs problematic
 - Surface process improvements that prevent future issues
-- Suggest updates to Layer 1 assets (CLAUDE.md, plan templates, commands)
+- Suggest updates to Layer 1 assets (AGENTS.md, plan templates, commands)
 - Decide whether the failure points to a missing rule, weak command, inadequate reference guidance, insufficient testing, missing specialized agent, or unclear planning
 
 **Philosophy:**
@@ -95,7 +95,7 @@ For each problematic divergence, identify the root cause:
 
 Based on patterns across divergences, suggest:
 
-- **CLAUDE.md updates:** Universal patterns or anti-patterns to document
+- **AGENTS.md updates:** Universal patterns or anti-patterns to document
 - **Plan command updates:** Instructions that need clarification or missing steps
 - **New commands:** Manual processes that should be automated
 - **Validation additions:** Checks that would catch issues earlier
@@ -142,7 +142,7 @@ root_cause: [unclear plan | missing context | etc]
 Assess adherence to documented patterns:
 
 - [ ] Followed codebase architecture
-- [ ] Used documented patterns (from CLAUDE.md)
+- [ ] Used documented patterns (from AGENTS.md)
 - [ ] Applied testing patterns correctly
 - [ ] Met validation requirements
 
@@ -153,7 +153,7 @@ Prefer small, reusable system changes with lasting benefit. Do not change produc
 
 Based on analysis, recommend specific actions:
 
-**Update CLAUDE.md:**
+**Update AGENTS.md:**
 
 - [ ] Document [pattern X] discovered during implementation
 - [ ] Add anti-pattern warning for [Y]
@@ -192,4 +192,4 @@ Based on analysis, recommend specific actions:
 - **Be specific:** Don't say "plan was unclear" - say "plan didn't specify which auth pattern to use"
 - **Focus on patterns:** One-off issues aren't actionable. Look for repeated problems.
 - **Action-oriented:** Every finding should have a concrete asset update suggestion
-- **Suggest improvements:** Don't just analyze - actually suggest the text to add to CLAUDE.md or commands
+- **Suggest improvements:** Don't just analyze - actually suggest the text to add to AGENTS.md or commands

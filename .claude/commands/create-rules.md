@@ -1,16 +1,16 @@
 ---
-description: Create global rules (CLAUDE.md) from codebase analysis
+description: Create global rules (AGENTS.md, imported by CLAUDE.md) from codebase analysis
 ---
 
 # Create Global Rules
 
-Generate a CLAUDE.md file by analyzing the codebase and extracting patterns.
+Generate an AGENTS.md file by analyzing the codebase and extracting patterns. `AGENTS.md` is the single source of project rules for every coding agent (Muse, Claude Code, others); `CLAUDE.md` is a small file that imports it, so Claude Code gets the same rules.
 
 ---
 
 ## Objective
 
-Create project-specific global rules that give Claude context about:
+Create project-specific global rules that give the coding agent context about:
 - What this project is
 - Technologies used
 - How the code is organized
@@ -90,11 +90,11 @@ Identify files that are important to understand:
 
 ## Phase 3: GENERATE
 
-### Create CLAUDE.md
+### Create AGENTS.md
 
-Use the template at `.agents/CLAUDE-template.md` as a starting point.
+Use the existing `AGENTS.md` at the project root (the starter template) as the structural starting point, and overwrite it with the project's real content.
 
-**Output path**: `CLAUDE.md` (project root)
+**Output path**: `AGENTS.md` (project root)
 
 **Adapt to the project:**
 - Remove sections that don't apply
@@ -103,8 +103,14 @@ Use the template at `.agents/CLAUDE-template.md` as a starting point.
 
 **Additional guidance:**
 - Extract stable conventions only.
-- Keep `CLAUDE.md` concise and reserve always-loaded context for durable operating rules.
-- Route deep or fast-changing guidance to reference docs, article files, on-demand context references, or specialized agent templates instead of copying large planning blocks into `CLAUDE.md`.
+- Keep `AGENTS.md` concise and reserve always-loaded context for durable operating rules.
+- Route deep or fast-changing guidance to reference docs, article files, on-demand context references, or specialized agent templates instead of copying large planning blocks into `AGENTS.md`.
+
+### Keep CLAUDE.md as a pointer
+
+Ensure `CLAUDE.md` (project root) exists and contains the line `@AGENTS.md`, which imports the rules for Claude Code. If `CLAUDE.md` already has Claude-Code-specific notes, preserve them below the import. Never copy the shared rules into `CLAUDE.md`.
+
+Where the project's real facts are known, replace the template's `{placeholders}`; remove sections that do not apply (including `## Environment Constraints` if none).
 
 **Key sections to include:**
 
@@ -131,7 +137,7 @@ Use the template at `.agents/CLAUDE-template.md` as a starting point.
 ```markdown
 ## Global Rules Created
 
-**File**: `CLAUDE.md`
+**Files**: `AGENTS.md` (rules), `CLAUDE.md` (imports AGENTS.md)
 
 ### Project Type
 
@@ -147,7 +153,7 @@ Use the template at `.agents/CLAUDE-template.md` as a starting point.
 
 ### Next Steps
 
-1. Review the generated `CLAUDE.md`
+1. Review the generated `AGENTS.md`
 2. Add any project-specific notes
 3. Remove any sections that don't apply
 4. Optionally create reference docs in `.agents/reference/`
@@ -157,7 +163,7 @@ Use the template at `.agents/CLAUDE-template.md` as a starting point.
 
 ## Tips
 
-- Keep CLAUDE.md focused and scannable
+- Keep AGENTS.md focused and scannable
 - Don't duplicate information that's in other docs (link instead)
 - Focus on patterns and conventions, not exhaustive documentation
 - Update it as the project evolves

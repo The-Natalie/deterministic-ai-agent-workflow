@@ -1,5 +1,10 @@
 # MVP Tool Design: Obsidian AI Agent
 
+> **Example, not a spec.** A concrete three-tool design for one Obsidian agent, included to
+> illustrate tool consolidation. The principle - few workflow-shaped tools instead of many
+> CRUD ones - transfers to any agent; the tool names, vault semantics, and Pydantic AI
+> signatures do not.
+
 ## Design Philosophy
 
 Based on [Anthropic's best practices for writing tools for agents](https://www.anthropic.com/engineering/writing-tools-for-agents), our MVP uses **3 consolidated, workflow-oriented tools** instead of many single-purpose tools.

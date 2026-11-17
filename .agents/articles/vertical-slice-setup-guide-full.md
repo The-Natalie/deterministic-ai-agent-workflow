@@ -3,6 +3,10 @@
 **By Rasmus Widing**
 _Product Builder | AI Adoption Specialist | Creator of the PRP Framework_
 
+> **Reference article - not a requirement of this workflow.** Third-party guidance,
+> reproduced here for context. Example stack: Python + FastAPI + SQLAlchemy. Take the decision rules;
+> don't copy the folder names, tooling, or layout unless your project matches.
+
 After three years of building AI-powered applications and helping hundreds of engineers adopt patterns for AI coding, I've learned that **the hardest part isn't understanding the theory—it's knowing where to put things**.
 
 Where does the database configuration go? What about logging? If you're building an AI agent, where do you place the OpenAI client? Which code is okay to duplicate, and which should follow DRY principles?

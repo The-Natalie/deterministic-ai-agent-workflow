@@ -2,6 +2,9 @@
 
 **Load this when:** Creating or modifying agent tools
 
+**Note:** the examples use Pydantic AI and an Obsidian-vault domain. The seven-element
+docstring structure is framework- and domain-agnostic.
+
 ---
 
 ## Tool Docstrings for Agents

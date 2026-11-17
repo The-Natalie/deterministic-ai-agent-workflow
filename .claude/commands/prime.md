@@ -16,15 +16,16 @@ List all tracked files:
 !`git ls-files`
 
 Show directory structure:
-On Linux, run: `tree -L 3 -I 'node_modules|__pycache__|.git|dist|build'`
+If `tree` is available, run: `tree -L 3 -I 'node_modules|__pycache__|.git|dist|build'`
+Otherwise, work from the tracked-file list above.
 
 ### 2. Read Core Documentation
 
 - Read the PRD.md or similar spec file
-- Read CLAUDE.md or similar global rules file
+- Read AGENTS.md (the global rules file; CLAUDE.md imports it) or similar
 - Read README files at project root and major directories
 - Read any architecture documentation
-- Read the drizzle config so you understand the database schema
+- If the project has a datastore, read its schema or migration config (Drizzle, Prisma, Alembic, plain SQL migrations, etc.)
 - Read only the most relevant files from `.agents/reference/` and `.agents/articles/`
 
 ### 3. Identify Key Files
@@ -44,6 +45,13 @@ Check current branch and status:
 !`git status`
 
 ## Output Report
+Write this summary to `.agents/plans/prime-summary.md`.
+
+Organize the file by implementation phase:
+- If the file does not exist, create it.
+- If the current phase already has a summary, replace only that phase's summary with the new one.
+- If the current phase does not have a summary, append it under a heading identifying the phase.
+- Preserve all other phases' summaries.
 
 Provide a concise summary covering:
 
@@ -75,5 +83,11 @@ Provide a concise summary covering:
 - Constraints that will matter before implementation
 - The next highest-leverage recommended task or phase
 - Files or docs that should be consulted before implementation
+
+### What's Next
+- Identify the current implementation phase based on the PRD and project progress.
+- Confirm exactly what we are going to build for the current phase, including an ordered list of deliverables with their titles, descriptions, and scope boundaries.
+- Write the complete build list to `.agents/plans/phase-{N}-build-list.md`, replacing `{N}` with the current phase number. Create or overwrite the file for the current phase.
+- Include the current phase and the path to its build-list file in `prime-summary.md`. Do not duplicate the full deliverable list there.
 
 **Make this summary easy to scan - use bullet points and clear headers.**

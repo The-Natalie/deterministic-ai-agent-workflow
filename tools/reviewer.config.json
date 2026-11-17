@@ -1,0 +1,31 @@
+{
+  "description": "Reviewer-model settings shared by tools/review-plan.py and tools/review-execution.py. The reviewer must be a DIFFERENT model from your builder. To switch reviewers: change \"active\" below (muse | openai | claude), or override for one run with the REVIEWER_PROFILE env var or the scripts' --profile flag. No secrets live here: each profile's key comes from the environment variable named in api_key_env (or a KEY=VALUE line in ./.env). provider is 'openai' (OpenAI-compatible chat-completions) or 'anthropic' (Claude Messages API). Optional per-profile keys: temperature (null = do not send it), max_tokens_param (e.g. 'max_completion_tokens' for newer OpenAI models).",
+  "active": "muse",
+  "profiles": {
+    "muse": {
+      "provider": "openai",
+      "api_url": "https://api.meta.ai/v1/chat/completions",
+      "model": "muse-spark-1.3",
+      "api_key_env": "MODEL_API_KEY",
+      "max_output_tokens": 32000,
+      "temperature": 0
+    },
+    "openai": {
+      "provider": "openai",
+      "api_url": "https://api.openai.com/v1/chat/completions",
+      "model": "gpt-5-mini",
+      "api_key_env": "OPENAI_API_KEY",
+      "max_output_tokens": 32000,
+      "max_tokens_param": "max_completion_tokens",
+      "temperature": null
+    },
+    "claude": {
+      "provider": "anthropic",
+      "api_url": "https://api.anthropic.com/v1/messages",
+      "model": "claude-opus-5-5",
+      "api_key_env": "ANTHROPIC_API_KEY",
+      "max_output_tokens": 32000,
+      "temperature": 0
+    }
+  }
+}

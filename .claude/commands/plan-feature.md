@@ -18,6 +18,17 @@ Transform a feature request into a **comprehensive implementation plan** through
 
 ### Phase 1: Feature Understanding
 
+**Resolve the requested deliverable:**
+
+1. Read .agents/plans/prime-summary.md to identify the current project state and active phase.
+2. Read .agents/plans/phase-{N}-build-list.md and locate the confirmed build list for the active phase.
+3. Match $ARGUMENTS to a deliverable in that list, using its title.
+4. Use the deliverable’s description to establish its scope and position in the phase.
+5. Consult the relevant sections of PRD.md as the authoritative source for requirements and acceptance criteria.
+6. Plan ONLY the requested deliverable. Do not include implementation work assigned to later deliverables or phases.
+7. If the deliverable cannot be identified, or the confirmed build list conflicts with the PRD, ask for clarification before proceeding.
+8. Do not modify or overwrite prime-summary.md or the phase build-list file.
+
 **Deep Feature Analysis:**
 
 - Extract the core problem being solved
@@ -56,13 +67,13 @@ So that <benefit/value>
   - Logging patterns and standards
 - Extract common patterns for the feature's domain
 - Document anti-patterns to avoid
-- Check CLAUDE.md for project-specific rules and conventions
+- Check AGENTS.md for project-specific rules and conventions (CLAUDE.md imports it)
 
 **3. Dependency Analysis**
 
 - Catalog external libraries relevant to feature
 - Understand how libraries are integrated (check imports, configs)
-- Find relevant documentation in docs/, ai_docs/, .agents/reference or ai-wiki if available
+- Find relevant documentation in `docs/`, `.agents/reference/`, or any other in-repo documentation directory, if available
 - Note library versions and compatibility requirements
 
 **4. Testing Patterns**
@@ -178,7 +189,7 @@ So that <benefit/value>
 **Feature Type**: [New Capability/Enhancement/Refactor/Bug Fix]
 **Estimated Complexity**: [Low/Medium/High]
 **Primary Systems Affected**: [List of main components/services]
-**Dependencies**: [External libraries or services required]
+**Dependencies**: [External libraries or services required; prerequisite deliverables outside this plan — name each, or "none"]
 **Assumptions**: [Key assumptions that should be validated before coding]
 
 ---
@@ -251,10 +262,10 @@ So that <benefit/value>
 
 **Tasks:**
 
-- Connect to existing routers/handlers
+- Wire the feature into the application's entry point (router, CLI command registry, UI route, exported API - whichever applies)
 - Register new components
 - Update configuration files
-- Add middleware or interceptors if needed
+- Add middleware, hooks, or interceptors if the project uses them
 
 ### Phase 4: Testing & Validation
 
@@ -322,6 +333,8 @@ Design unit tests with fixtures and assertions following existing testing approa
 
 Execute every command to ensure zero regressions and 100% feature correctness.
 
+Every command or block MUST state its exact pass signal on an `Expected:` line (exit code plus the key output, count, or observation that proves success — e.g. `Expected: exit 0, "11 passed"`, `Expected: exit 0, docs:200`). A check whose passing output is not specified cannot confirm anything; do not write checks you cannot describe passing.
+
 ### Level 1: Syntax & Style
 
 <Project-specific linting and formatting commands>
@@ -336,7 +349,7 @@ Execute every command to ensure zero regressions and 100% feature correctness.
 
 ### Level 4: Manual Validation
 
-<Feature-specific manual testing steps - API calls, UI testing, exploratory checks, etc.>
+Feature-specific manual testing steps - API calls, UI testing, exploratory checks, etc. For EACH step, state Performer: `agent` (executable in this environment — the executor MUST run it) or `human` (requires a real browser, device, account, physical check, or judgment the agent lacks), then numbered steps and the exact expected observation per step. Every `human` step MUST be actionable by the user as written, with no missing setup, URLs, or credentials left unspecified.
 
 ### Level 5: Additional Validation (Optional)
 
@@ -346,9 +359,11 @@ Execute every command to ensure zero regressions and 100% feature correctness.
 
 ## MANUAL VERIFICATION CHECKLIST
 
-- [ ] Verify the feature works in the intended user flow
-- [ ] Verify edge cases and failure states
-- [ ] Confirm documentation or config changes are reflected where needed
+Label each item `agent` or `human` (same performer rule as Level 4). Each item MUST give numbered steps and the exact expected observable result — never a bare "verify X works."
+
+- [ ] [agent/human] <check>: <numbered steps>; expected: <exact observable result>
+- [ ] [agent/human] <edge cases and failure states>: <numbered steps>; expected: <exact observable result>
+- [ ] [agent/human] <docs/config reflection>: <numbered steps>; expected: <exact observable result>
 
 ## ROLLBACK CONSIDERATIONS
 
@@ -357,11 +372,13 @@ Execute every command to ensure zero regressions and 100% feature correctness.
 
 ## ACCEPTANCE CRITERIA
 
-<List specific, measurable criteria that must be met for completion>
+Each criterion MUST name the check that proves it: the validation level/command, the test file, or the manual-checklist item — plus the exact expected result. A criterion with no verification named is an incomplete plan.
+
+Example: `- [ ] Frontend renders 5 labeled placeholder views (L4 agent browser check: load dev URL, click each of the 5 tabs; expected: each labeled view visible with placeholder text)`
 
 - [ ] Feature implements all specified functionality
 - [ ] All validation commands pass with zero errors
-- [ ] Unit test coverage meets requirements (80%+)
+- [ ] Test coverage meets the project's stated requirement (see AGENTS.md); if none is stated, note that no threshold is set
 - [ ] Integration tests verify end-to-end workflows
 - [ ] Code follows project conventions and patterns
 - [ ] No regressions in existing functionality
@@ -439,15 +456,24 @@ Execute every command to ensure zero regressions and 100% feature correctness.
 
 **Confidence Score**: #/10 that execution will succeed on first attempt
 
+## Automatic Plan Review
+
+Do not stop after saving the plan. Immediately run the plan review for it: use the `/review-plan` command on the plan you just created (the phase build list is resolved as that command describes). If you cannot invoke the command directly, read `.claude/commands/review-plan.md` and follow it. The command runs `tools/review-plan.py`, which sends the plan to a separate reviewer model, so you never review your own plan: you only run the script, apply the routine fixes it lists to the plan, and re-run it, up to 3 correction cycles. The reviewer model checks the plan against the PRD and build list. The loop stops for the owner only on a decision it cannot make, a blocker, or the correction limit.
+
+If the review cannot run at all (for example, the reviewer's API key is missing), keep the saved plan, say plainly that the review DID NOT RUN and why, and stop. Never imply a plan was reviewed when it was not.
+
+Never proceed to `/execute` on your own: the owner approves the reviewed plan first.
+
 ## Report
 
-After creating the Plan, provide:
+After the review loop ends, provide:
 
 - Summary of feature and approach
 - Full path to created Plan file
 - Complexity assessment
 - Key implementation risks or considerations
 - Estimated confidence score for one-pass success
+- The review loop's Stage Summary (status, corrections made, remaining issues, your next action) and the review file path
 
 ## VALIDATION REPORTING
 
